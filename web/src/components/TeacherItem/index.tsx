@@ -3,34 +3,53 @@ import React from 'react';
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-export default function TeacherItem(){
+export interface Teacher{
+    id: number;
+    avatar: string,
+    bio: string,
+    cost: number,
+    name: string,
+    subject: string,
+    whatsapp: string 
+}
+
+interface TeacherItemProps{
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+    function createNewConnection(){
+        api.post('connections', {
+            user_id: teacher.id
+        })
+    }
+
     return(
         <article className="teacher-item">
             <header>
-                <img src="https://avatars1.githubusercontent.com/u/54780605?s=460&u=58d983e84d01a6500dcb1fab3d9287ad1c1c2268&v=4" alt="Juliana Ribeiro"/>
+                <img src={teacher.avatar} alt={teacher.name}/>
                 <div>
-                    <strong>Juliana Ribeiro</strong>
-                    <span>Programação</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
 
-            <p>
-                Apaixonada por programação, quero dedicar meu tempo aos estudos e praticar ensinando a vocês!
-                <br/>
-                Vamos codar muito!
-            </p>
+            <p>{teacher.bio}</p>
 
             <footer>
                 <p>
                     Preço/hora
-                    <strong>R$80,00</strong>
+                    <strong>R${teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a target="_blank" onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`}>
                     <img src={whatsappIcon} alt="Whatsapp"/>
                     Entrar em contato
-                </button>
+                </a>
             </footer>
         </article>
     );
 }
+
+export default TeacherItem;
