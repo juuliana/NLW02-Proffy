@@ -1,12 +1,9 @@
 <h1 align="center">
-    ![Proffy](https://github.com/juuliana/NLW02-Proffy/blob/master/assets/web.png)
     Next Level Week #2
     Proffy
 </h1>
 
-<p align="center">
-  <img alt="design do projeto" width="650px" src="./.github/design.png" />
-<p>
+![Proffy](https://github.com/juuliana/NLW02-Proffy/blob/master/assets/web.png)
 
 ## Sobre
 
